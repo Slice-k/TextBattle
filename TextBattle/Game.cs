@@ -26,15 +26,15 @@ public int GetFlaskDropChance()
 
 public static void SwitchTurn()
 {
-    if(Game.PlayerTurn)
+    if(PlayerTurn)
     {
-        Game.PlayerTurn = false;
-        Game.EnemyTurn = true;
+        PlayerTurn = false;
+        EnemyTurn = true;
     }
     else if(Game.EnemyTurn)
     {
-        Game.EnemyTurn = false;
-        Game.PlayerTurn = true;
+        EnemyTurn = false;
+        PlayerTurn = true;
         
     }
 }

@@ -2,17 +2,17 @@ public class Player
 {
     public int MaxHP { get; private set; }
     public int CurrentHP { get; set; }
-    public int MaxMana {get; private set;}
-    public int CurrentMana {get; set;}
+    public int MaxMana { get; private set; }
+    public int CurrentMana { get; set; }
     public int HealthPotions { get; set; }
-    public int StrengthPotions {get; set; }
+    public int StrengthPotions { get; set; }
     public int FireFlasks { get; set; }
-    public bool Strengthened {get; set;}
-    public int StrengthCounter {get; set;}
+    private Summoner summoner;
+    private Warrior warrior;
+    private Samurai samurai;
     private Random rand;
 
     public Build Build;
-
     public Game gameManager;
 
     public Player(Build build)
@@ -24,8 +24,9 @@ public class Player
         HealthPotions = 3;
         StrengthPotions = 3;
         FireFlasks = 3;
-        Strengthened = false;
-        StrengthCounter = 3;
+        summoner = new Summoner();
+        warrior = new Warrior();
+        samurai = new Samurai();
         rand = new Random();
 
         if (Build.SummonerBuild)
@@ -34,13 +35,13 @@ public class Player
         }
         else if (Build.WarriorBuild)
         {
-            MaxHP = 200;
+            MaxHP = 100;
         }
-        else if(Build.SamuraiBuild)
+        else if (Build.SamuraiBuild)
         {
             MaxHP = 90;
         }
-        else 
+        else
         {
             MaxHP = 100;
         }
@@ -48,191 +49,82 @@ public class Player
         CurrentHP = MaxHP;
     }
 
-    public int GetAttackDamage()
+    public int GetBaseDamage()
     {
         if (Build.SummonerBuild)
         {
-            if(Strengthened)
-            {
-                return rand.Next(11, 25+1); // min damage 11, max damage 25
-            }
-            else{
-                return rand.Next(6, 20+1); // min damage 6, max damage 20
-            }
-            
+            return summoner.GetAtkDamage();
         }
         else if (Build.WarriorBuild)
         {
-            if(Strengthened)
-            {
-                return rand.Next(6, 15+1); // min dmg 6, max dmg 15
-            }
-            else
-            {
-            return rand.Next(10) + 1; // min damage 1, max damage 10
-            }
+            return warrior.GetAtkDamage();
         }
-        else if(Build.SamuraiBuild)
+        else if (Build.SamuraiBuild)
         {
-            if(Strengthened)
-            {
-                return rand.Next(15, 30+1); // min damage 15, max 30
-            }
-            return rand.Next(10, 25+1); // min damage 10, max 25
+            return samurai.GetAtkDamage();
         }
         else
         {
-            if(Strengthened)
-            {
-                return rand.Next(6, 20+1); // min damage 6
-            }
-            return rand.Next(15) + 1; // min damage 1, max damage 15
+            DamageEffect damageEffect = new DamageEffect(6, 20);
+            return damageEffect.CalculateDamage();
         }
     }
 
-
-public void Skills(Enemy enemy)
-{
-    var skillMenu = true;
-    while(skillMenu)
+    public void Skills(Enemy enemy)
     {
-    if(Build.SummonerBuild)
-    {
-        Console.WriteLine("Skills:\n");
-        Console.WriteLine("1. Back\n2. Summon Carby (MP Cost: 20)");
-        var choice = Console.ReadLine();
-        switch(choice)
+        bool repeatSkillSelection;
+        do
         {
-            case "1":
-            break;
-
-            case "2":
-            if(CurrentMana >= 20)
+            if (Build.SummonerBuild)
             {
-            var damage = rand.Next(30, 45+1);
-            enemy.CurrentHP -= damage;
-            CurrentMana -= 20;
-            Console.WriteLine("=== You summoned Carby to hit " + enemy + " for " + damage + " damage! ===");
-            Game.SwitchTurn();
+                repeatSkillSelection = summoner.UseSkill(this, enemy);
+            }
+            else if (Build.WarriorBuild)
+            {
+                repeatSkillSelection = warrior.UseSkill(this, enemy);
+            }
+            else if (Build.SamuraiBuild)
+            {
+                repeatSkillSelection = samurai.UseSkill(this, enemy);
             }
             else
             {
-                Console.WriteLine("=== You do not have enough Mana ===");
-            }
-            break;
+                Console.WriteLine("Skills:\n");
+                Console.WriteLine("1. Back\n2. Heavy Punch");
+                var choice = Console.ReadLine();
+                switch (choice)
+                {
+                    case "1":
+                        repeatSkillSelection = false;
+                        break;
 
-            default:
-            Console.WriteLine("=== Invalid Option ===");
-            continue;
-        }
+                    case "2":
+                        if (CurrentMana >= 15)
+                        {
+                            DamageEffect damageEffect = new DamageEffect(15, 20);
+                            int damage = damageEffect.CalculateDamage();
+                            enemy.CurrentHP -= damage;
+                            CurrentMana -= 15;
+                            Console.WriteLine("=== You used Heavy Punch and did " + damage + " damage! ===\n");
+                            repeatSkillSelection = false;
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n=== You do not have enough Mana ===");
+                            repeatSkillSelection = true;
+                        }
+                        break;
+
+                    default:
+                        Console.WriteLine("=== Invalid Option ===");
+                        repeatSkillSelection = true;
+                        break;
+                }
+            }
+        } while (repeatSkillSelection);
     }
 
-    else if(Build.WarriorBuild)
-    {
-        Console.WriteLine("Skills:");
-        Console.WriteLine("1. Back\n2. Fell Cleave (MP Cost: 30)\n3. Equilibrium (MP Cost: 75)");
-        var choice = Console.ReadLine();
-        switch(choice)
-        {
-            case "1":
-            break;
 
-            case "2":
-            if(CurrentMana >= 30)
-            {
-            var damage = rand.Next(20, 35+1);
-            enemy.CurrentHP -= damage;
-            CurrentMana -= 30;
-            Console.WriteLine("\n=== You used Fell Cleave and did " + damage + " damage! ===\n");
-            Game.SwitchTurn();
-            }
-            else {
-                Console.WriteLine("\n=== You do not have enough Mana ===");
-            }
-            
-            break;
-
-            case "3":
-            if(CurrentMana >= 75)
-            {
-            var heal = rand.Next(60, 90+1);
-            CurrentHP += heal;
-            CurrentMana -= 80;
-            if(CurrentHP >= MaxHP)  CurrentHP = MaxHP;
-            Console.WriteLine("\n=== You used Equilibrium and healed for " + heal + " HP ===");
-            }
-            else{
-                Console.WriteLine("\n=== You do not have enough Mana ===");
-            }
-            break;
-
-            default:
-            Console.WriteLine("\n=== Invalid Option ===");
-            continue;
-        }
-    }
-    else if(Build.SamuraiBuild)
-    {
-        Console.WriteLine("Skills:\n");
-        Console.WriteLine("1. Back\n2. Midare Setsugekka (MP Cost: 40)");
-        var choice = Console.ReadLine();
-        switch(choice)
-        {
-            case "1":
-            break;
-
-            case "2":
-            if(CurrentMana >= 40)
-            {
-            var damage = rand.Next(40, 60+1);
-            enemy.CurrentHP -= damage;
-            CurrentMana -= 40;
-            Console.WriteLine("\n=== You used Midare Setsugekka and did " + damage + " damage! ===\n");
-            Game.SwitchTurn();
-            }
-            else {
-                Console.WriteLine("\n=== You do not have enough Mana ===");
-            }
-            break;
-
-            default:
-            Console.WriteLine("=== Invalid Option ===");
-            continue;
-        }
-    }
-    
-    else
-    {
-        Console.WriteLine("Skills:\n");
-        Console.WriteLine("1. Back\n2. Heavy Punch");
-        var choice = Console.ReadLine();
-        switch(choice)
-        {
-            case "1":
-            break;
-
-            case "2":
-            if(CurrentMana >= 15)
-            {
-            var damage = rand.Next(15, 20+1);
-            enemy.CurrentHP -= damage;
-            CurrentMana -= 15;
-            Console.WriteLine("=== You used Heavy Punch and did " + damage + " damage! ===\n");
-            }
-            else{
-                Console.WriteLine("\n=== You do not have enough Mana ===");
-            }
-            break;
-
-            default:
-            Console.WriteLine("=== Invalid Option ===");
-            continue;
-        }
-    }
-    break; // breaks out of skill menu loop when skill is used
-    }
-    
-}
     
 
 
@@ -310,7 +202,6 @@ public void Skills(Enemy enemy)
     public void UseStrengthPotion()
     {
         Console.WriteLine("=== You used a strength potion! === ");
-        Strengthened = true;
         StrengthPotions--;
     }
 }

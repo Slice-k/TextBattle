@@ -1,2 +1,5 @@
-Create Effect class, to be able to add Shields, Strength Duration, Poison Damage etc.
 Create Enemy rate chance (split between easy enemies and hard enemies maybe?)
+Create Crit rates
+Create Description for skills
+Shield effect for radiant aegis, and carby
+Maybe Item Class
