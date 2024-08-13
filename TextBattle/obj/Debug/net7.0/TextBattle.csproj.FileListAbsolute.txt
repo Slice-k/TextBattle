@@ -1,0 +1,30 @@
+C:\Users\nanth\Documents\Dev Stuff\TextBattle\bin\Debug\net7.0\TextBattle.exe
+C:\Users\nanth\Documents\Dev Stuff\TextBattle\bin\Debug\net7.0\TextBattle.deps.json
+C:\Users\nanth\Documents\Dev Stuff\TextBattle\bin\Debug\net7.0\TextBattle.runtimeconfig.json
+C:\Users\nanth\Documents\Dev Stuff\TextBattle\bin\Debug\net7.0\TextBattle.dll
+C:\Users\nanth\Documents\Dev Stuff\TextBattle\bin\Debug\net7.0\TextBattle.pdb
+C:\Users\nanth\Documents\Dev Stuff\TextBattle\obj\Debug\net7.0\TextBattle.csproj.AssemblyReference.cache
+C:\Users\nanth\Documents\Dev Stuff\TextBattle\obj\Debug\net7.0\TextBattle.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nanth\Documents\Dev Stuff\TextBattle\obj\Debug\net7.0\TextBattle.AssemblyInfoInputs.cache
+C:\Users\nanth\Documents\Dev Stuff\TextBattle\obj\Debug\net7.0\TextBattle.AssemblyInfo.cs
+C:\Users\nanth\Documents\Dev Stuff\TextBattle\obj\Debug\net7.0\TextBattle.csproj.CoreCompileInputs.cache
+C:\Users\nanth\Documents\Dev Stuff\TextBattle\obj\Debug\net7.0\TextBattle.dll
+C:\Users\nanth\Documents\Dev Stuff\TextBattle\obj\Debug\net7.0\refint\TextBattle.dll
+C:\Users\nanth\Documents\Dev Stuff\TextBattle\obj\Debug\net7.0\TextBattle.pdb
+C:\Users\nanth\Documents\Dev Stuff\TextBattle\obj\Debug\net7.0\TextBattle.genruntimeconfig.cache
+C:\Users\nanth\Documents\Dev Stuff\TextBattle\obj\Debug\net7.0\ref\TextBattle.dll
+C:\Users\nanth\Documents\Dev_Stuff\TextBattle\bin\Debug\net7.0\TextBattle.exe
+C:\Users\nanth\Documents\Dev_Stuff\TextBattle\bin\Debug\net7.0\TextBattle.deps.json
+C:\Users\nanth\Documents\Dev_Stuff\TextBattle\bin\Debug\net7.0\TextBattle.runtimeconfig.json
+C:\Users\nanth\Documents\Dev_Stuff\TextBattle\bin\Debug\net7.0\TextBattle.dll
+C:\Users\nanth\Documents\Dev_Stuff\TextBattle\bin\Debug\net7.0\TextBattle.pdb
+C:\Users\nanth\Documents\Dev_Stuff\TextBattle\obj\Debug\net7.0\TextBattle.csproj.AssemblyReference.cache
+C:\Users\nanth\Documents\Dev_Stuff\TextBattle\obj\Debug\net7.0\TextBattle.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nanth\Documents\Dev_Stuff\TextBattle\obj\Debug\net7.0\TextBattle.AssemblyInfoInputs.cache
+C:\Users\nanth\Documents\Dev_Stuff\TextBattle\obj\Debug\net7.0\TextBattle.AssemblyInfo.cs
+C:\Users\nanth\Documents\Dev_Stuff\TextBattle\obj\Debug\net7.0\TextBattle.csproj.CoreCompileInputs.cache
+C:\Users\nanth\Documents\Dev_Stuff\TextBattle\obj\Debug\net7.0\TextBattle.dll
+C:\Users\nanth\Documents\Dev_Stuff\TextBattle\obj\Debug\net7.0\refint\TextBattle.dll
+C:\Users\nanth\Documents\Dev_Stuff\TextBattle\obj\Debug\net7.0\TextBattle.pdb
+C:\Users\nanth\Documents\Dev_Stuff\TextBattle\obj\Debug\net7.0\TextBattle.genruntimeconfig.cache
+C:\Users\nanth\Documents\Dev_Stuff\TextBattle\obj\Debug\net7.0\ref\TextBattle.dll
